@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="CollectIt.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:CollectIt.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <TabBar>
+
+        <ShellContent
+            Title="All categories"
+            ContentTemplate="{DataTemplate views:MainPage}"
+            Route="MainPage" />
+
+
+        <ShellContent
+            Title="Category"
+            ContentTemplate="{DataTemplate views:CategoryPage}"
+            Route="CategoryPage" />
+
+    </TabBar>
+
+</Shell>
