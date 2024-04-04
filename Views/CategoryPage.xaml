@@ -3,10 +3,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectIt.Views.CategoryPage"
              Title="CategoryPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="AddNewItem_Clicked" Text="Add item" IconImageSource="{FontImage Glyph=+, Color=#EEDDA3}" />
+    </ContentPage.ToolbarItems>
+    
     <VerticalStackLayout>
 
         <Label Text="{Binding Name}" />
 
+        <CollectionView
+            x:Name="CategoryCollection"
+            ItemsSource="{Binding Items}"
+            SelectionMode="None">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <HorizontalStackLayout>
+                        <Label Text="{Binding Name}" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
 
     </VerticalStackLayout>
 </ContentPage>

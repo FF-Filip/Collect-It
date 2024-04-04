@@ -17,14 +17,28 @@
                 SelectionMode="Single">
 
                 <CollectionView.ItemsLayout>
-                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="8" />
                 </CollectionView.ItemsLayout>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <HorizontalStackLayout>
-                            <Label Text="{Binding Name}" />
-                        </HorizontalStackLayout>
+
+                        <Frame>
+
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding Name}" />
+                            </HorizontalStackLayout>
+
+                            <FlyoutBase.ContextFlyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem
+                                        Text="Edit" />
+                                    <MenuFlyoutItem
+                                        Text="Delete"/>
+                                </MenuFlyout>
+                            </FlyoutBase.ContextFlyout>
+                        </Frame>
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
 

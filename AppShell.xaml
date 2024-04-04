@@ -6,19 +6,9 @@
     xmlns:views="clr-namespace:CollectIt.Views"
     Shell.FlyoutBehavior="Disabled">
 
-    <TabBar>
-
-        <ShellContent
-            Title="All categories"
-            ContentTemplate="{DataTemplate views:MainPage}"
-            Route="MainPage" />
-
-
-        <ShellContent
-            Title="Category"
-            ContentTemplate="{DataTemplate views:CategoryPage}"
-            Route="CategoryPage" />
-
-    </TabBar>
+    <ShellContent
+        Title="All categories"
+        ContentTemplate="{DataTemplate views:MainPage}"
+        Route="MainPage" />
 
 </Shell>

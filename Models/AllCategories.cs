@@ -18,20 +18,32 @@ namespace CollectIt.Models
         {
             Categories.Clear();
 
-            Category c1 = new Category();
-            c1.Name = "Ksiazki";
+            string filePath = Path.Combine(Constants.AppDataPath, "CollectItApp.data.txt");
+            Debug.WriteLine(filePath);
 
-            Item i1 = new Item();
-            i1.Name = "Ferdydurke";
+            if (!File.Exists(filePath))
+                SaveCategories();
 
-            c1.Items.Add(i1);
-            Categories.Add(c1);
+            try
+            {
+                using (StreamReader reader = new StreamReader(filePath))
+                {
+                    while(reader.Peek() >= 0)
+                    {
+                        Category category = new Category();
+                        category.Name = reader.ReadLine();
+                        Categories.Add(category);
+                    }
+                }
+            } catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+            }
         }
 
         public void SaveCategories()
         {
             string filePath = Path.Combine(Constants.AppDataPath, "CollectItApp.data.txt");
-            Debug.WriteLine(filePath);
 
             if (File.Exists(filePath))
                 File.Delete(filePath);

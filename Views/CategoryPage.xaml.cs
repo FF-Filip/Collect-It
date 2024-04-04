@@ -1,4 +1,4 @@
-namespace CollectIt.Views;
+﻿namespace CollectIt.Views;
 
 using Models;
 
@@ -26,5 +26,16 @@ public partial class CategoryPage : ContentPage
         allCategories.LoadCategories();
         Category category = allCategories.Categories.Where(c => c.Name == catName).FirstOrDefault();
         BindingContext = category;
+    }
+
+    private async void AddNewItem_Clicked(object sender, EventArgs e)
+    {
+		string result = await DisplayPromptAsync("Nowy przedmiot kolekcji", "Wprowadź nazwę przedmiotu");
+		if(!string.IsNullOrWhiteSpace(result))
+		{
+			Item item = new Item();
+			item.Name = result;
+			(BindingContext as Category).Items.Add(item);
+		}
     }
 }
