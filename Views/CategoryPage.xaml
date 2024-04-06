@@ -23,9 +23,22 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <HorizontalStackLayout>
-                        <Label Text="{Binding Name}" />
-                    </HorizontalStackLayout>
+                    <Frame>
+
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding Name}" />
+                        </HorizontalStackLayout>
+
+                        <FlyoutBase.ContextFlyout>
+                            <MenuFlyout>
+                                <MenuFlyoutItem
+                                    Text="Edytuj" />
+                                <MenuFlyoutItem
+                                    Text="Usuń"
+                                    Clicked="DeleteItem_Clicked"/>
+                            </MenuFlyout>
+                        </FlyoutBase.ContextFlyout>
+                    </Frame>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 

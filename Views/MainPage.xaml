@@ -32,9 +32,11 @@
                             <FlyoutBase.ContextFlyout>
                                 <MenuFlyout>
                                     <MenuFlyoutItem
-                                        Text="Edit" />
+                                        Text="Zmień nazwę"
+                                        Clicked="ChangeCategoryName_Clicked" />
                                     <MenuFlyoutItem
-                                        Text="Delete"/>
+                                        Text="Usuń"
+                                        Clicked="DeleteCategory_Clicked"/>
                                 </MenuFlyout>
                             </FlyoutBase.ContextFlyout>
                         </Frame>

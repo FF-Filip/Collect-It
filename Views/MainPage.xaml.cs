@@ -22,17 +22,17 @@ namespace CollectIt.Views
         {
             string catName = await DisplayPromptAsync("Nowa kategoria", "Podaj nazwę nowej kategorii");
 
-            if(!string.IsNullOrWhiteSpace(catName))
-            {
-                Category category = new Category();
-                category.Name = catName;
-
-                ((AllCategories)BindingContext).Categories.Add(category);
-                ((AllCategories)BindingContext).SaveCategories();
-            } else
+            if (string.IsNullOrWhiteSpace(catName))
             {
                 await DisplayAlert("Uwaga", "Nieprawidłowa nazwa kategorii", "Ok");
+                return;
             }
+
+            Category category = new Category();
+            category.Name = catName.Trim();
+
+            ((AllCategories)BindingContext).Categories.Add(category);
+            ((AllCategories)BindingContext).SaveCategories();
         }
         
         private async void CategorySelection_Changed(object sender, SelectionChangedEventArgs e)
@@ -40,10 +40,31 @@ namespace CollectIt.Views
             if(e.CurrentSelection.Count != 0)
             {
                 var selectedCategory = (Category) e.CurrentSelection[0];
-                Debug.WriteLine("cat name: " + selectedCategory.Name);
                 await Shell.Current.GoToAsync($"{nameof(CategoryPage)}?{nameof(CategoryPage.selectedCategoryName)}={selectedCategory.Name}");
                 CategoryCollection.SelectedItem = null;
             }
+        }
+
+        private void DeleteCategory_Clicked(object sender, EventArgs e)
+        {
+            MenuItem menuItem = sender as MenuItem;
+            ((AllCategories)BindingContext).Categories.Remove(menuItem.BindingContext as Category);
+            ((AllCategories)BindingContext).SaveCategories();
+        }
+
+        private async void ChangeCategoryName_Clicked(object sender, EventArgs e)
+        {
+            MenuItem menuItem = sender as MenuItem;
+            string result = await DisplayPromptAsync("Zmiana nazwy", $"Podaj nową nazwę dla kategorii {(menuItem.BindingContext as Category).Name}");
+
+            if (string.IsNullOrWhiteSpace(result))
+            {
+                await DisplayAlert("Uwaga", "Nieprawidłowa nazwa kategorii", "Ok");
+                return;
+            }
+
+            (BindingContext as AllCategories).Categories.Where( c => c == (menuItem.BindingContext as Category)).FirstOrDefault().Name = result;
+            ((AllCategories)BindingContext).SaveCategories();
         }
     }
 }

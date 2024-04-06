@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CollectIt.Models
 {
-    class Category
+    class Category : INotifyPropertyChanged
     {
         private string _name;
         private ObservableCollection<Item> _items = new ObservableCollection<Item>();
+
+        
         
         public string Name 
         {
@@ -30,6 +27,13 @@ namespace CollectIt.Models
                 _items = value;
                 OnPropertyChanged("Items");
             }
+        }
+
+        public Category() { }
+
+        public Category(string Name)
+        {
+            this.Name = Name;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

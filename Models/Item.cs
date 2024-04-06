@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace CollectIt.Models
 {
-    class Item
+    class Item : INotifyPropertyChanged
     {
         private string _name;
-        private bool _isItemBought;
+        private string _parentCategory;
+        private bool _isItemSold;
 
         public string Name
         {
@@ -22,14 +23,31 @@ namespace CollectIt.Models
             }
         }
 
-        public bool IsItemBought
+        public string ParentCategory
         {
-            get => _isItemBought;
+            get => _parentCategory;
             set
             {
-                _isItemBought = value;
+                _parentCategory = value;
+                OnPropertyChanged("ParentCategory");
+            }
+        }
+
+        public bool IsItemSold
+        {
+            get => _isItemSold;
+            set
+            {
+                _isItemSold = value;
                 OnPropertyChanged("IsItemBought");
             }
+        }
+
+        public Item(string Name, string parentCategory, bool IsItemSold = false)
+        {
+            this.Name = Name;
+            this.ParentCategory = parentCategory;
+            this.IsItemSold = IsItemSold;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

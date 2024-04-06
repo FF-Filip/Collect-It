@@ -1,6 +1,7 @@
 ﻿namespace CollectIt.Views;
 
 using Models;
+using System.Diagnostics;
 
 [QueryProperty(nameof(selectedCategoryName), nameof(selectedCategoryName))]
 
@@ -33,9 +34,44 @@ public partial class CategoryPage : ContentPage
 		string result = await DisplayPromptAsync("Nowy przedmiot kolekcji", "Wprowadź nazwę przedmiotu");
 		if(!string.IsNullOrWhiteSpace(result))
 		{
-			Item item = new Item();
-			item.Name = result;
-			(BindingContext as Category).Items.Add(item);
-		}
+			AllCategories allCategories = new AllCategories();
+			allCategories.LoadCategories();
+            Item item = new Item(result, (BindingContext as Category).Name);
+            (BindingContext as Category).Items.Add(item);
+			foreach(Category cat in allCategories.Categories)
+			{
+				if(cat.Name == (BindingContext as Category).Name)
+				{
+					cat.Items.Add(item);
+					break;
+				}
+			}
+			allCategories.SaveCategories();
+        }
+	}
+
+    private void DeleteItem_Clicked(object sender, EventArgs e)
+    {
+        MenuItem menuItem = sender as MenuItem;
+		Item itemToDelete = menuItem.BindingContext as Item;
+        AllCategories allCategories = new AllCategories();
+        allCategories.LoadCategories();
+        foreach (Category cat in allCategories.Categories)
+        {
+            if (cat.Name == (BindingContext as Category).Name)
+            {
+				foreach(Item item in cat.Items)
+				{
+					if(item.Name == itemToDelete.Name)
+					{
+                        cat.Items.Remove(item);
+                        break;
+                    }
+				}
+				break;
+            }
+        }
+        (BindingContext as Category).Items.Remove(menuItem.BindingContext as Item);
+        allCategories.SaveCategories();
     }
 }
