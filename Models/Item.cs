@@ -9,9 +9,20 @@ namespace CollectIt.Models
 {
     class Item : INotifyPropertyChanged
     {
+        private string _id;
         private string _name;
         private string _parentCategory;
         private bool _isItemSold;
+
+        public string Id
+        {
+            get => _id;
+            set
+            {
+                _id = value;
+                OnPropertyChanged("Id");
+            }
+        }
 
         public string Name
         {
@@ -43,8 +54,17 @@ namespace CollectIt.Models
             }
         }
 
-        public Item(string Name, string parentCategory, bool IsItemSold = false)
+        public Item(string Id, string Name, string parentCategory, bool IsItemSold = false)
         {
+            if (Id == null)
+            {
+                this.Id = Guid.NewGuid().ToString();
+            }
+            else
+            {
+                this.Id = Id;
+            }
+                
             this.Name = Name;
             this.ParentCategory = parentCategory;
             this.IsItemSold = IsItemSold;

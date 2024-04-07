@@ -36,7 +36,7 @@ public partial class CategoryPage : ContentPage
 		{
 			AllCategories allCategories = new AllCategories();
 			allCategories.LoadCategories();
-            Item item = new Item(result, (BindingContext as Category).Name);
+            Item item = new Item(null, result, (BindingContext as Category).Name);
             (BindingContext as Category).Items.Add(item);
 			foreach(Category cat in allCategories.Categories)
 			{
@@ -62,7 +62,7 @@ public partial class CategoryPage : ContentPage
             {
 				foreach(Item item in cat.Items)
 				{
-					if(item.Name == itemToDelete.Name)
+					if(item.Id == itemToDelete.Id)
 					{
                         cat.Items.Remove(item);
                         break;

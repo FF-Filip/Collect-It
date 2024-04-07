@@ -37,7 +37,7 @@ namespace CollectIt.Models
                     {
                         string line = reader.ReadLine();
                         List<string> attributes = line.Split(",").ToList();
-                        Item item = new Item(attributes[0], attributes[1], bool.Parse(attributes[2]));
+                        Item item = new Item(attributes[0], attributes[1], attributes[2], bool.Parse(attributes[3]));
                         foreach(Category cat in Categories)
                         {
                             if(cat.Name == item.ParentCategory)
@@ -76,7 +76,7 @@ namespace CollectIt.Models
                             categoriesFile.WriteLine(cat.Name);
                             foreach (Item item in cat.Items)
                             {
-                                itemsFile.WriteLine(item.Name + "," + cat.Name + "," + item.IsItemSold);
+                                itemsFile.WriteLine(item.Id + "," + item.Name + "," + cat.Name + "," + item.IsItemSold);
                             }
                         }
                         categoriesFile.Close();
@@ -89,43 +89,5 @@ namespace CollectIt.Models
                 Debug.WriteLine(err.Message);
             }
         }
-        /*
-        public void SaveCategories()
-        {
-            string catFilePath = Path.Combine(Constants.AppDataPath, "CollectItApp.categories_data.txt");
-            string itemFilePath = Path.Combine(Constants.AppDataPath, "CollectItApp.items_data.txt");
-
-            if (File.Exists(catFilePath))
-                File.Delete(catFilePath);
-
-            try
-            {
-                using (StreamWriter categoriesFile = new StreamWriter(catFilePath))
-                {
-                    foreach (Category cat in Categories)
-                    {
-                        categoriesFile.WriteLine(cat.Name);
-                    }
-                    categoriesFile.Close();
-                }
-
-                using (StreamWriter itemsFile = new StreamWriter(itemFilePath))
-                {
-                    foreach (Category cat in Categories)
-                    {
-                        foreach (Item item in cat.Items)
-                        {
-                            itemsFile.WriteLine(item.Name + "," + "," + item.IsItemSold);
-                        }
-                    }
-                    itemsFile.Close();
-                }
-            }
-            catch (Exception err)
-            {
-                Debug.WriteLine(err.Message);
-            }
-        }
-        */
     }
 }
