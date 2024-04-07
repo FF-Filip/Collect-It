@@ -32,7 +32,8 @@
                         <FlyoutBase.ContextFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem
-                                    Text="Edytuj" />
+                                    Text="Edytuj"
+                                    Clicked="EditItem_Clicked" />
                                 <MenuFlyoutItem
                                     Text="Usuń"
                                     Clicked="DeleteItem_Clicked"/>

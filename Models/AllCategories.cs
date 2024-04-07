@@ -89,5 +89,34 @@ namespace CollectIt.Models
                 Debug.WriteLine(err.Message);
             }
         }
+
+        public void AddItem(Item newItem)
+        {
+            foreach (Category cat in Categories)
+            {
+                if (cat.Name == newItem.ParentCategory)
+                {
+                    if(cat.Items.Where( item => item.Id == newItem.Id).Count() == 0)
+                    {
+                        cat.Items.Add(newItem);
+                        break;
+                    }
+                    else
+                    {
+                        int index = 0;
+                        foreach (Item item in cat.Items)
+                        {
+                            if (item.Id == newItem.Id)
+                            {
+                                index = cat.Items.IndexOf(item);
+                                break;
+                            }
+                        }
+                        cat.Items[index] = newItem;
+                    }
+                }
+            }
+            SaveCategories();
+        }
     }
 }

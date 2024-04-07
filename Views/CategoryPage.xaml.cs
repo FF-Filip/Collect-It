@@ -31,23 +31,12 @@ public partial class CategoryPage : ContentPage
 
     private async void AddNewItem_Clicked(object sender, EventArgs e)
     {
-		string result = await DisplayPromptAsync("Nowy przedmiot kolekcji", "Wprowadź nazwę przedmiotu");
-		if(!string.IsNullOrWhiteSpace(result))
+		ItemPage itemPage = new ItemPage
 		{
-			AllCategories allCategories = new AllCategories();
-			allCategories.LoadCategories();
-            Item item = new Item(null, result, (BindingContext as Category).Name);
-            (BindingContext as Category).Items.Add(item);
-			foreach(Category cat in allCategories.Categories)
-			{
-				if(cat.Name == (BindingContext as Category).Name)
-				{
-					cat.Items.Add(item);
-					break;
-				}
-			}
-			allCategories.SaveCategories();
-        }
+			BindingContext = this.BindingContext,
+		};
+
+		await Navigation.PushAsync(itemPage);
 	}
 
     private void DeleteItem_Clicked(object sender, EventArgs e)
@@ -73,5 +62,17 @@ public partial class CategoryPage : ContentPage
         }
         (BindingContext as Category).Items.Remove(menuItem.BindingContext as Item);
         allCategories.SaveCategories();
+    }
+
+    private async void EditItem_Clicked(object sender, EventArgs e)
+    {
+		MenuItem menuItem= sender as MenuItem;
+
+        ItemPage itemPage = new ItemPage(menuItem.BindingContext as Item)
+        {
+            BindingContext = this.BindingContext,
+        };
+
+        await Navigation.PushAsync(itemPage);
     }
 }

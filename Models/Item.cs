@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CollectIt.Models
 {
-    class Item : INotifyPropertyChanged
+    public class Item : INotifyPropertyChanged
     {
         private string _id;
         private string _name;
@@ -52,6 +52,11 @@ namespace CollectIt.Models
                 _isItemSold = value;
                 OnPropertyChanged("IsItemBought");
             }
+        }
+
+        public Item()
+        {
+
         }
 
         public Item(string Id, string Name, string parentCategory, bool IsItemSold = false)
