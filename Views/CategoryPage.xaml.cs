@@ -27,6 +27,7 @@ public partial class CategoryPage : ContentPage
         allCategories.LoadCategories();
         Category category = allCategories.Categories.Where(c => c.Name == catName).FirstOrDefault();
         BindingContext = category;
+        this.Title = category.Name;
     }
 
     private async void AddNewItem_Clicked(object sender, EventArgs e)

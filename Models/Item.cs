@@ -12,6 +12,8 @@ namespace CollectIt.Models
         private string _id;
         private string _name;
         private string _parentCategory;
+        private double _price;
+        private string _status;
         private bool _isItemSold;
 
         public string Id
@@ -44,6 +46,26 @@ namespace CollectIt.Models
             }
         }
 
+        public double Price
+        {
+            get => _price;
+            set
+            {
+                _price = value;
+                OnPropertyChanged("Price");
+            }
+        }
+
+        public string Status
+        {
+            get => _status;
+            set
+            {
+                _status = value;
+                OnPropertyChanged("Status");
+            }
+        }
+
         public bool IsItemSold
         {
             get => _isItemSold;
@@ -59,7 +81,7 @@ namespace CollectIt.Models
 
         }
 
-        public Item(string Id, string Name, string parentCategory, bool IsItemSold = false)
+        public Item(string Id, string Name, string ParentCategory, double Price, string Status, bool IsItemSold = false)
         {
             if (Id == null)
             {
@@ -71,7 +93,9 @@ namespace CollectIt.Models
             }
                 
             this.Name = Name;
-            this.ParentCategory = parentCategory;
+            this.ParentCategory = ParentCategory;
+            this.Price = Price;
+            this.Status = Status;
             this.IsItemSold = IsItemSold;
         }
 
