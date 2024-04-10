@@ -9,6 +9,7 @@ namespace CollectIt
             InitializeComponent();
 
             Routing.RegisterRoute(nameof(CategoryPage), typeof(CategoryPage));
+            Routing.RegisterRoute(nameof(ItemPage), typeof(ItemPage));
         }
     }
 }

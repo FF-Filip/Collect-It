@@ -7,11 +7,24 @@ using System.Threading.Tasks;
 
 namespace CollectIt.Models
 {
-    class Item : INotifyPropertyChanged
+    public class Item : INotifyPropertyChanged
     {
+        private string _id;
         private string _name;
         private string _parentCategory;
+        private double _price;
+        private string _status;
         private bool _isItemSold;
+
+        public string Id
+        {
+            get => _id;
+            set
+            {
+                _id = value;
+                OnPropertyChanged("Id");
+            }
+        }
 
         public string Name
         {
@@ -33,6 +46,26 @@ namespace CollectIt.Models
             }
         }
 
+        public double Price
+        {
+            get => _price;
+            set
+            {
+                _price = value;
+                OnPropertyChanged("Price");
+            }
+        }
+
+        public string Status
+        {
+            get => _status;
+            set
+            {
+                _status = value;
+                OnPropertyChanged("Status");
+            }
+        }
+
         public bool IsItemSold
         {
             get => _isItemSold;
@@ -43,10 +76,26 @@ namespace CollectIt.Models
             }
         }
 
-        public Item(string Name, string parentCategory, bool IsItemSold = false)
+        public Item()
         {
+
+        }
+
+        public Item(string Id, string Name, string ParentCategory, double Price, string Status, bool IsItemSold = false)
+        {
+            if (Id == null)
+            {
+                this.Id = Guid.NewGuid().ToString();
+            }
+            else
+            {
+                this.Id = Id;
+            }
+                
             this.Name = Name;
-            this.ParentCategory = parentCategory;
+            this.ParentCategory = ParentCategory;
+            this.Price = Price;
+            this.Status = Status;
             this.IsItemSold = IsItemSold;
         }
 

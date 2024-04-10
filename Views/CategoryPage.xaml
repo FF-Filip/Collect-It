@@ -7,10 +7,8 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Clicked="AddNewItem_Clicked" Text="Add item" IconImageSource="{FontImage Glyph=+, Color=#EEDDA3}" />
     </ContentPage.ToolbarItems>
-    
-    <VerticalStackLayout>
 
-        <Label Text="{Binding Name}" />
+    <VerticalStackLayout>
 
         <CollectionView
             x:Name="CategoryCollection"
@@ -23,16 +21,41 @@
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Frame>
+                    <Frame
+                        x:Name="ItemFrame">
+                        
+                        <Grid>
 
-                        <HorizontalStackLayout>
-                            <Label Text="{Binding Name}" />
-                        </HorizontalStackLayout>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <Label 
+                                Text="{Binding Name}"
+                                FontSize="24"
+                                Grid.Column="0"
+                                VerticalOptions="Center" />
+                            
+                            <VerticalStackLayout
+                                 Grid.Column="1">
+
+                                <Label
+                                    Text="Status:" />
+                                <Label
+                                    Text="{Binding Status}" />
+
+                            </VerticalStackLayout>
+                            
+                        </Grid>
 
                         <FlyoutBase.ContextFlyout>
                             <MenuFlyout>
                                 <MenuFlyoutItem
-                                    Text="Edytuj" />
+                                    Text="Edytuj"
+                                    Clicked="EditItem_Clicked" />
                                 <MenuFlyoutItem
                                     Text="Usuń"
                                     Clicked="DeleteItem_Clicked"/>
