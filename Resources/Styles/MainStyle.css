@@ -1,5 +1,5 @@
 ^contentpage {
-    background-color: #D0CCD0;
+    background-color: dimgray;
 }
 
 #CategoriesCollection {
@@ -26,4 +26,13 @@
     width: 140;
     height: 160;
     margin: 0;
+}
+
+Editor {
+    color: white;
+    background-color: #1C6E8C;
+}
+
+.FormSection{
+    margin: 20;
 }

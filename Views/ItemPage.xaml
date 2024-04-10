@@ -6,31 +6,70 @@
 
     <VerticalStackLayout Padding="40">
 
-        <Editor 
-            x:Name="NameEditor"
-            PlaceholderColor="DarkGray"
-            Placeholder="Nazwa przedmiotu"
-            />
+        <HorizontalStackLayout
+            StyleClass="FormSection">
 
-        <Button
+            <Editor 
+                x:Name="NameEditor"
+                PlaceholderColor="white"
+                BackgroundColor="Black"
+                WidthRequest="360"
+                Placeholder="Nazwa przedmiotu" />
+
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout>
+
+            <Button
             Text="Wybierz obrazek dla przedmiotu"
-            TextColor="Black"
+            TextColor="White"
+            BackgroundColor="Black"
             Clicked="AddImage_Clicked" />
 
-        <Picker
-            x:Name="StatusPicker" />
+        </HorizontalStackLayout>
 
-        <Entry
-            x:Name="PriceEntry"
-            PlaceholderColor="DarkGray"
-            Keyboard="Numeric" />
+        <HorizontalStackLayout>
 
-        <Picker
-            x:Name="RatingPicker" />
+            <Label
+                Text="Wybierz status przedmiotu: " 
+                TextColor="White" />
+
+            <Picker
+                x:Name="StatusPicker"
+                BackgroundColor="Black"/>
+
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout>
+
+            <Label
+                Text="Wprowadź cenę przedmiotu: " 
+                TextColor="White" />
+
+            <Entry
+                x:Name="PriceEntry"
+                PlaceholderColor="DarkGray"
+                BackgroundColor="Black"
+                WidthRequest="200"
+                Keyboard="Numeric" />
+
+        </HorizontalStackLayout>
+
+        <HorizontalStackLayout>
+
+            <Label
+                Text="Oceń przedmiot: " 
+                TextColor="White" />
+
+            <Picker
+                x:Name="RatingPicker" />
+
+        </HorizontalStackLayout>
 
         <Button 
             Text="Zapisz"
-            TextColor="Black"
+            BackgroundColor="Black"
+            TextColor="White"
             Clicked="AddItem_Clicked"/>
 
     </VerticalStackLayout>

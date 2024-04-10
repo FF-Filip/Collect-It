@@ -59,7 +59,7 @@
         <HorizontalStackLayout>
 
             <Label 
-                Text="Ilość elementów na sprzedaż:"
+                Text="Ilość elementów sprzedanych:"
                 Margin="4"
                 VerticalOptions="Center" 
                 HorizontalOptions="Center" />

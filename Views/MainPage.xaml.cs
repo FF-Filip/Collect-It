@@ -1,5 +1,6 @@
 ﻿using CollectIt.Models;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace CollectIt.Views
 {
@@ -23,8 +24,11 @@ namespace CollectIt.Views
             string catName = await DisplayPromptAsync("Nowa kategoria", "Podaj nazwę nowej kategorii");
 
             if (string.IsNullOrWhiteSpace(catName))
+                return;
+
+            if(!Regex.IsMatch(catName, "^[\\p{L}\\- ]+$"))
             {
-                await DisplayAlert("Uwaga", "Nieprawidłowa nazwa kategorii", "Ok");
+                await DisplayAlert("Uwaga", "Niedozowolona nazwa kategorii", "Ok");
                 return;
             }
 

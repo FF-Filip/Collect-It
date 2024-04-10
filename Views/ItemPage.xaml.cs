@@ -1,7 +1,7 @@
 using CollectIt.Models;
 using System.Diagnostics;
 using System.Globalization;
-using Windows.Storage.Search;
+using System.Text.RegularExpressions;
 
 namespace CollectIt.Views;
 
@@ -19,7 +19,7 @@ public partial class ItemPage : ContentPage
         {
             "Nowy",
             "U¿ywany",
-            "Na sprzedaŸ",
+            "Na sprzeda¿",
             "Sprzedany",
             "Chcê kupiæ"
         };
@@ -48,6 +48,13 @@ public partial class ItemPage : ContentPage
         {
             AllCategories allCategories = new AllCategories();
             allCategories.LoadCategories();
+
+            if(!Regex.IsMatch(NameEditor.Text, "^[\\p{L}\\- ]+$"))
+            {
+                await DisplayAlert("Uwaga", "Niedozwolona nazwa przedmiotu", "Ok");
+                return;
+            }
+
             Item newItem = new Item(null, NameEditor.Text, (BindingContext as Category).Name, Double.Parse(PriceEntry.Text.Replace(",", "."), CultureInfo.InvariantCulture), StatusPicker.SelectedItem.ToString(), int.Parse(RatingPicker.SelectedItem.ToString()));
             if (this.item != null)
             {

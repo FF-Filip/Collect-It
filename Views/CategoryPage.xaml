@@ -94,8 +94,16 @@
 
                                 <Label
                                     Text="Cena:" />
-                                <Label
-                                    Text="{Binding Price}" />
+                                
+                                <HorizontalStackLayout>
+                                    
+                                    <Label
+                                        Text="{Binding Price}" />
+                                    
+                                    <Label
+                                        Text=" zł" />
+                                    
+                                </HorizontalStackLayout>
 
                             </VerticalStackLayout>
 
