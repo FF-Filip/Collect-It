@@ -1,0 +1,30 @@
+^contentpage {
+    background-color: #D0CCD0;
+}
+
+#CategoriesCollection {
+    width: 400;
+
+}
+
+.CategoryFrame {
+    width: 400;
+    background-color: #1C6E8C;
+}
+
+^label {
+    color: #FBFCFF;
+    font-size: 24;
+}
+
+.ItemFrame {
+    background-color: #1C6E8C;
+    width: 1200;
+    height: 140;
+}
+
+.ItemImage{
+    width: 140;
+    height: 160;
+    margin: 0;
+}

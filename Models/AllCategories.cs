@@ -38,7 +38,9 @@ namespace CollectIt.Models
                     {
                         string line = reader.ReadLine();
                         List<string> attributes = line.Split(";").ToList();
-                        Item item = new Item(attributes[0], attributes[1], attributes[2], Double.Parse(attributes[3], CultureInfo.InvariantCulture), attributes[4], bool.Parse(attributes[5]));
+                        double price = Double.Parse(attributes[3]);
+                        Item item = new Item(attributes[0], attributes[1], attributes[2], price, attributes[4], int.Parse(attributes[5]), bool.Parse(attributes[6]));
+                        item.Image = attributes[7];
                         foreach(Category cat in Categories)
                         {
                             if(cat.Name == item.ParentCategory)
@@ -77,7 +79,7 @@ namespace CollectIt.Models
                             categoriesFile.WriteLine(cat.Name);
                             foreach (Item item in cat.Items)
                             {
-                                itemsFile.WriteLine(item.Id + ";" + item.Name + ";" + cat.Name + ";" + item.Price.ToString() + ";" + item.Status + ";" + item.IsItemSold);
+                                itemsFile.WriteLine(item.Id + ";" + item.Name + ";" + cat.Name + ";" + item.Price.ToString() + ";" + item.Status + ";" + item.Rating + ";" + item.IsItemSold + ";" + item.Image);
                             }
                         }
                         categoriesFile.Close();

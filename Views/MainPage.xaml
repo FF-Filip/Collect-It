@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CollectIt.Views.MainPage">
+    
+    
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Clicked="AddNewCategory_Clicked" Text="Add category" IconImageSource="{FontImage Glyph=+, Color=#AAEEFF}" />
@@ -11,7 +13,7 @@
         <VerticalStackLayout>
 
             <CollectionView
-                x:Name="CategoryCollection"
+                x:Name="CategoriesCollection"
                 ItemsSource="{Binding Categories}"
                 SelectionChanged="CategorySelection_Changed"
                 SelectionMode="Single">
@@ -23,10 +25,13 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 
-                        <Frame>
+                        <Frame
+                            StyleClass="CategoryFrame">
 
                             <HorizontalStackLayout>
-                                <Label Text="{Binding Name}" />
+                                <Label 
+                                    Text="{Binding Name}" 
+                                    HorizontalOptions="Center"/>
                             </HorizontalStackLayout>
 
                             <FlyoutBase.ContextFlyout>

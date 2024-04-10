@@ -10,12 +10,19 @@
             x:Name="NameEditor"
             Placeholder="Nazwa przedmiotu"/>
 
+        <Button
+            Text="Wybierz obrazek dla przedmiotu"
+            Clicked="AddImage_Clicked" />
+
         <Picker
             x:Name="StatusPicker" />
 
         <Entry
             x:Name="PriceEntry"
             Keyboard="Numeric" />
+
+        <Picker
+            x:Name="RatingPicker" />
 
         <Button 
             Text="Zapisz"

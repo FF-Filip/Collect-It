@@ -41,13 +41,22 @@ namespace CollectIt.Views
             {
                 var selectedCategory = (Category) e.CurrentSelection[0];
                 await Shell.Current.GoToAsync($"{nameof(CategoryPage)}?{nameof(CategoryPage.selectedCategoryName)}={selectedCategory.Name}");
-                CategoryCollection.SelectedItem = null;
+                CategoriesCollection.SelectedItem = null;
             }
         }
 
         private void DeleteCategory_Clicked(object sender, EventArgs e)
         {
             MenuItem menuItem = sender as MenuItem;
+            foreach(Item item in (menuItem.BindingContext as Category).Items)
+            {
+                try
+                {
+                    File.Delete(item.Image);
+                }
+                catch (Exception ex) { }
+            }
+
             ((AllCategories)BindingContext).Categories.Remove(menuItem.BindingContext as Category);
             ((AllCategories)BindingContext).SaveCategories();
         }

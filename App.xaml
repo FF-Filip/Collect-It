@@ -5,6 +5,7 @@
              x:Class="CollectIt.App">
     <Application.Resources>
         <ResourceDictionary>
+            <StyleSheetExtension Source="/Resources/Styles/MainStyle.css" />
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />

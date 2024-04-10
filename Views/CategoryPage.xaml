@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:utils="clr-namespace:CollectIt.Utils"
              x:Class="CollectIt.Views.CategoryPage"
              Title="CategoryPage">
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Clicked="CategoryInfo_Clicked" Text="Category info" IconImageSource="{FontImage Glyph=?, Color=#AADDA3}" />
         <ToolbarItem Clicked="AddNewItem_Clicked" Text="Add item" IconImageSource="{FontImage Glyph=+, Color=#EEDDA3}" />
     </ContentPage.ToolbarItems>
 
@@ -16,14 +18,31 @@
             SelectionMode="None">
 
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="12" />
             </CollectionView.ItemsLayout>
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
+
                     <Frame
-                        x:Name="ItemFrame">
-                        
+                        x:Name="ItemFrame"
+                        StyleClass="ItemFrame">
+
+                        <Frame.Triggers>
+                            
+                            <DataTrigger 
+                                TargetType="Frame"
+                                Binding="{Binding Status}"
+                                Value="Sprzedany">
+                                
+                                <Setter 
+                                    Property="BackgroundColor"
+                                    Value="#54677a" />
+                                
+                            </DataTrigger>
+                            
+                        </Frame.Triggers>
+
                         <Grid>
 
                             <Grid.ColumnDefinitions>
@@ -31,24 +50,67 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            
+
+                            <Image
+                                StyleClass="ItemImage"
+                                Grid.Column="0"
+                                Source="{Binding Image, FallbackValue=/Resources/Images/dotnet_bot.svg}" />
+
                             <Label 
                                 Text="{Binding Name}"
                                 FontSize="24"
-                                Grid.Column="0"
-                                VerticalOptions="Center" />
+                                Grid.Column="1"
+                                VerticalOptions="Center">
+                                <Label.Triggers>
+                                    <DataTrigger 
+                                        TargetType="Label"
+                                        Binding="{Binding Status}"
+                                        Value="Sprzedany">
+
+                                    <Setter 
+                                        Property="TextDecorations"
+                                        Value="Strikethrough" />
+
+                                    </DataTrigger>
+                                </Label.Triggers>
+                            </Label>
                             
                             <VerticalStackLayout
-                                 Grid.Column="1">
+                                 Grid.Column="2"
+                                VerticalOptions="Center">
 
                                 <Label
                                     Text="Status:" />
+
                                 <Label
                                     Text="{Binding Status}" />
 
                             </VerticalStackLayout>
-                            
+
+                            <VerticalStackLayout
+                                Grid.Column="3"
+                                VerticalOptions="Center">
+
+                                <Label
+                                    Text="Cena:" />
+                                <Label
+                                    Text="{Binding Price}" />
+
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout
+                                Grid.Column="4"
+                                VerticalOptions="Center">
+
+                                <Label
+                                    Text="Ocena zadowolenia:" />
+                                <Label
+                                    Text="{Binding Rating}" />
+
+                            </VerticalStackLayout>
+
                         </Grid>
 
                         <FlyoutBase.ContextFlyout>
@@ -61,7 +123,9 @@
                                     Clicked="DeleteItem_Clicked"/>
                             </MenuFlyout>
                         </FlyoutBase.ContextFlyout>
+                        
                     </Frame>
+                    
                 </DataTemplate>
             </CollectionView.ItemTemplate>
 
