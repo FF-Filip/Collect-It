@@ -8,10 +8,13 @@
 
         <Editor 
             x:Name="NameEditor"
-            Placeholder="Nazwa przedmiotu"/>
+            PlaceholderColor="DarkGray"
+            Placeholder="Nazwa przedmiotu"
+            />
 
         <Button
             Text="Wybierz obrazek dla przedmiotu"
+            TextColor="Black"
             Clicked="AddImage_Clicked" />
 
         <Picker
@@ -19,6 +22,7 @@
 
         <Entry
             x:Name="PriceEntry"
+            PlaceholderColor="DarkGray"
             Keyboard="Numeric" />
 
         <Picker
@@ -26,6 +30,7 @@
 
         <Button 
             Text="Zapisz"
+            TextColor="Black"
             Clicked="AddItem_Clicked"/>
 
     </VerticalStackLayout>

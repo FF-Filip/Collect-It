@@ -4,7 +4,6 @@
 
 #CategoriesCollection {
     width: 400;
-
 }
 
 .CategoryFrame {
@@ -13,7 +12,7 @@
 }
 
 ^label {
-    color: #FBFCFF;
+    color: black;
     font-size: 24;
 }
 
