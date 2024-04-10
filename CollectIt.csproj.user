@@ -12,9 +12,6 @@
     <MauiXaml Update="AppShell.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
-    <MauiXaml Update="Controls\CollectionItem.xaml">
-      <SubType>Designer</SubType>
-    </MauiXaml>
     <MauiXaml Update="Views\CategoryInfoPage.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
