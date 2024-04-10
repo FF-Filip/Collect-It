@@ -11,9 +11,11 @@ namespace CollectIt.Models
     {
         private string _id;
         private string _name;
+        private string _image;
         private string _parentCategory;
         private double _price;
         private string _status;
+        private int _rating;
         private bool _isItemSold;
 
         public string Id
@@ -33,6 +35,16 @@ namespace CollectIt.Models
             {
                 _name = value;
                 OnPropertyChanged("Name");
+            }
+        }
+
+        public string Image
+        {
+            get => _image;
+            set
+            {
+                _image = value;
+                OnPropertyChanged("Image");
             }
         }
 
@@ -66,6 +78,16 @@ namespace CollectIt.Models
             }
         }
 
+        public int Rating
+        {
+            get => _rating;
+            set
+            {
+                _rating = value;
+                OnPropertyChanged("Rating");
+            }
+        }
+
         public bool IsItemSold
         {
             get => _isItemSold;
@@ -81,7 +103,7 @@ namespace CollectIt.Models
 
         }
 
-        public Item(string Id, string Name, string ParentCategory, double Price, string Status, bool IsItemSold = false)
+        public Item(string Id, string Name, string ParentCategory, double Price, string Status, int Rating, bool IsItemSold = false)
         {
             if (Id == null)
             {
@@ -96,7 +118,11 @@ namespace CollectIt.Models
             this.ParentCategory = ParentCategory;
             this.Price = Price;
             this.Status = Status;
-            this.IsItemSold = IsItemSold;
+            this.Rating = Rating;
+            if (this.Status == "Sprzedany")
+                this.IsItemSold = true;
+            else
+                this.IsItemSold = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
